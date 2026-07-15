@@ -1,14 +1,38 @@
-name: My First Workflow
+name: First Workflow
 
 on:
   push:
   pull_request:
   workflow_dispatch:
 
+env:
+  COURSE: GitHub Actions
+
 jobs:
   hello:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Say Hello
-        run: echo "Hello from GitHub Actions!"
+      - uses: actions/checkout@v4
+
+      - name: Welcome
+        run: echo "Welcome to $COURSE"
+
+      - name: Step Two
+        run: echo "This is the second step."
+
+  information:
+    runs-on: ubuntu-latest
+    needs: hello
+
+    steps:
+      - name: Print Information
+        run: echo "This job runs after the hello job."
+
+  summary:
+    runs-on: ubuntu-latest
+    needs: information
+
+    steps:
+      - name: Finish
+        run: echo "Workflow completed successfully."
