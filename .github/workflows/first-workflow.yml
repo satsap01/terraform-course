@@ -32,7 +32,26 @@ jobs:
   summary:
     runs-on: ubuntu-latest
     needs: information
-
+    
     steps:
       - name: Finish
         run: echo "Workflow completed successfully."
+
+  run_uses:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Display Runner Information
+        run: |
+          echo "Operating System: $RUNNER_OS"
+          echo "Runner Name: $RUNNER_NAME"
+          echo "Workspace: $GITHUB_WORKSPACE"
+
+      - name: List Repository Files
+        run: ls
+
+      - name: Display Course Name
+        run: echo "Course = $COURSE"      
