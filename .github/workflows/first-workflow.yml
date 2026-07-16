@@ -2,7 +2,7 @@ name: First Workflow
 
 on:
   push:
-  pull_request:
+#  pull_request:
   workflow_dispatch:
 
 env:
@@ -54,7 +54,7 @@ jobs:
         run: |
           echo "Course name is ${{ vars.COURSE_NAME }}"
           echo "Secret message is ${{ secrets.MY_SECRET_MESSAGE }}"
-                    
+
       - name: List Repository Files
         run: ls
 
