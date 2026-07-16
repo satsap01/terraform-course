@@ -1,0 +1,46 @@
+name: Environment Deployment Demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build Application
+        run: echo "Building application"
+
+
+  deploy-development:
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment: development
+
+    steps:
+      - name: Deploy to Development
+        run: echo "Deploying to development"
+
+
+  deploy-preproduction:
+    needs: deploy-development
+    runs-on: ubuntu-latest
+
+    environment: Pre-Production
+
+    steps:
+      - name: Deploy to Pre-Production
+        run: echo "Deploying to Pre-Production"
+
+
+  deploy-production:
+    needs: deploy-preproduction
+    runs-on: ubuntu-latest
+
+    environment: production
+
+    steps:
+      - name: Deploy to Production
+        run: echo "Deploying to production"
