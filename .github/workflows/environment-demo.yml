@@ -21,8 +21,9 @@ jobs:
 
     steps:
       - name: Deploy to Development
-        run: echo "Deploying to development"
-
+        run: |
+         echo "Deploying to development"
+         echo "Using deployment key: ${{ secrets.DEPLOY_KEY }}"
 
   deploy-preproduction:
     needs: deploy-development
@@ -32,7 +33,9 @@ jobs:
 
     steps:
       - name: Deploy to Pre-Production
-        run: echo "Deploying to Pre-Production"
+        run: |
+         echo "Deploying to Pre-Production"
+         echo "Using deployment key: ${{ secrets.DEPLOY_KEY }}"
 
 
   deploy-production:
@@ -43,4 +46,6 @@ jobs:
 
     steps:
       - name: Deploy to Production
-        run: echo "Deploying to production"
+        run: |
+         echo "Deploying to production"
+         echo "Using deployment key: ${{ secrets.DEPLOY_KEY }}"
