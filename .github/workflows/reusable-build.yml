@@ -2,6 +2,11 @@ name: Reusable Build Workflow
 
 on:
   workflow_call:
+    inputs:
+      environment:
+        description: "Environment name"
+        required: true
+        type: string
 
 jobs:
   build:
@@ -9,4 +14,4 @@ jobs:
 
     steps:
       - name: Display Message
-        run: echo "Running reusable build workflow!"
+        run: 'echo "Building for environment: ${{ inputs.environment }}"'
