@@ -25,7 +25,7 @@ jobs:
           name: application-build
           path: build-output/
 
-  deploy:
+  Dev-deploy:
     needs: build
     runs-on: ubuntu-latest
 
@@ -41,4 +41,22 @@ jobs:
       - name: Show artifact contents
         run: |
           ls
+          cat version.txt
+
+  deploy-production:
+    needs: Dev-deploy
+    runs-on: ubuntu-latest
+
+    environment:
+      name: Production
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: application-build
+
+      - name: Deploy application
+        run: |
+          echo "Deploying production version:"
           cat version.txt
