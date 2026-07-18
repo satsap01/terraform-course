@@ -1,0 +1,62 @@
+name: First Workflow
+
+on:
+  push:
+#  pull_request:
+  workflow_dispatch:
+
+env:
+  COURSE: GitHub Actions
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Welcome
+        run: echo "Welcome to $COURSE"
+
+      - name: Step Two
+        run: echo "This is the second step."
+
+  information:
+    runs-on: ubuntu-latest
+    needs: hello
+
+    steps:
+      - name: Print Information
+        run: echo "This job runs after the hello job."
+
+  summary:
+    runs-on: ubuntu-latest
+    needs: information
+    
+    steps:
+      - name: Finish
+        run: echo "Workflow completed successfully."
+
+  run_uses:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Display Runner Information
+        run: |
+          echo "Operating System: $RUNNER_OS"
+          echo "Runner Name: $RUNNER_NAME"
+          echo "Workspace: $GITHUB_WORKSPACE"
+
+      - name: Test variables and secrets
+        run: |
+          echo "Course name is ${{ vars.COURSE_NAME }}"
+          echo "Secret message is ${{ secrets.MY_SECRET_MESSAGE }}"
+
+      - name: List Repository Files
+        run: ls
+
+      - name: Display Course Name
+        run: echo "Course = $COURSE"      

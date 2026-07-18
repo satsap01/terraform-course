@@ -1,0 +1,17 @@
+name: Reusable Build Workflow
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: "Environment name"
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display Message
+        run: 'echo "Building for environment: ${{ inputs.environment }}"'
