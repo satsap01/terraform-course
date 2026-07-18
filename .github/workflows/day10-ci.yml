@@ -1,7 +1,7 @@
 name: Day 10 CI Pipeline
 
 on:
-  push:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -41,4 +41,4 @@ jobs:
       - name: Show artifact contents
         run: |
           ls
-          cat application-build/version.txt
+          cat version.txt
